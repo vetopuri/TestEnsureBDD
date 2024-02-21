@@ -5,6 +5,10 @@ import java.awt.Desktop.Action;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.io.FileUtils;
@@ -13,9 +17,12 @@ import org.aspectj.apache.bcel.classfile.Utility;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.CapabilityType;
 
 import com.google.common.io.Files;
 
@@ -42,9 +49,14 @@ public class LoginStepDef{
 	PhysicalProgressPage pp;
 	Action act;
 	Screenshot ss;
+	
+	public static String EXECUTION_ENV = System.getProperty("os.name");
+	public static String LINUX_ENV = "Linux";
 
 	@Before
 	public void beforeScenario() throws IOException{
+		
+		
 
 		String filepath = "D:\\BDD Projects\\TestEnsureBDD\\ScreenShots";
 	    File file = new File(filepath);
@@ -53,8 +65,28 @@ public class LoginStepDef{
 	    
 		//System.setProperty("driver","D:\\BDD Projects\\TestEnsureBDD\\Drivers\\chromedriver.exe");
 		WebDriverManager.chromedriver().setup();
-		System.setProperty("java.awt.headless", "false");
-		driver = new ChromeDriver();
+		ChromeOptions options = new ChromeOptions();
+
+		options.addArguments("start-maximized");
+		options.setCapability(CapabilityType.UNHANDLED_PROMPT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);
+
+		System.out.println("EXECUTION_ENV" + EXECUTION_ENV);
+		System.out.println("LINUX_ENV" + LINUX_ENV);
+
+		if (EXECUTION_ENV.equals(LINUX_ENV)) {
+			options.setBinary("/usr/bin/google-chrome");
+			options.addArguments("--no-sandbox"); // Bypass OS security model
+			options.addArguments("--headless");
+			options.addArguments("--disable-extensions");
+			options.addArguments("--start-maximized");
+			options.addArguments("--ignore-certificate-errors");
+		} else if (EXECUTION_ENV.equals(LINUX_ENV)) {
+			options.addArguments("--disable-notifications");
+			options.addArguments("--remote-allow-origins=*");
+			System.setProperty("java.awt.headless", "false");
+			options.addArguments("--disable-features=VizDisplayCompositor");
+		}
+		driver = WebDriverManager.chromedriver().capabilities(options).create();
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		lp= new LoginPage(driver);
 		pp= new PhysicalProgressPage(driver);
