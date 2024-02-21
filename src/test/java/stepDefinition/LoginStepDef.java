@@ -50,7 +50,8 @@ public class LoginStepDef{
 	    FileUtils.deleteDirectory(file);
 	    file.delete();
 	    
-		System.setProperty("driver","D:\\BDD Projects\\TestEnsureBDD\\Drivers\\chromedriver.exe");
+		//System.setProperty("driver","D:\\BDD Projects\\TestEnsureBDD\\Drivers\\chromedriver.exe");
+		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		lp= new LoginPage(driver);
