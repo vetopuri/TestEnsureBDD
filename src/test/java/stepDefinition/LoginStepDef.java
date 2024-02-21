@@ -15,6 +15,7 @@ import org.apache.commons.io.FileUtils;
 import org.apache.log4j.PropertyConfigurator;
 import org.aspectj.apache.bcel.classfile.Utility;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.UnexpectedAlertBehaviour;
@@ -87,6 +88,7 @@ public class LoginStepDef{
 			options.addArguments("--disable-features=VizDisplayCompositor");
 		}
 		driver = WebDriverManager.chromedriver().capabilities(options).create();
+		driver.manage().window().setSize(new Dimension(1920, 1080));
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		lp= new LoginPage(driver);
 		pp= new PhysicalProgressPage(driver);
