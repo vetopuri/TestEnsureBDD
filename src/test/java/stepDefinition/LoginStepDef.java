@@ -53,6 +53,7 @@ public class LoginStepDef{
 	    
 		//System.setProperty("driver","D:\\BDD Projects\\TestEnsureBDD\\Drivers\\chromedriver.exe");
 		WebDriverManager.chromedriver().setup();
+		System.setProperty("java.awt.headless", "false");
 		driver = new ChromeDriver();
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		lp= new LoginPage(driver);
