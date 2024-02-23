@@ -7,6 +7,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- <cucumber.features>src/test/resources/features/login.feature</cucumber.features>-->
 
 	</properties>
 	<build>
@@ -42,7 +43,7 @@
 	</build>
 
 	<dependencies>
-		<dependency>
+	<!-- 	<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-java</artifactId>
 			<version>${cucumber.version}</version>
@@ -53,7 +54,7 @@
 			<artifactId>cucumber-testng</artifactId>
 			<version>${cucumber.version}</version>
 			<scope>test</scope>
-		</dependency>
+		</dependency> -->
 
 		<!-- Cucumber ExtentReport Adapter -->
 		<dependency>
@@ -71,12 +72,12 @@
 		</dependency>
 
 
-		<!-- Selenium -->
+		<!-- Selenium 
 		<dependency>
 			<groupId>org.seleniumhq.selenium</groupId>
 			<artifactId>selenium-java</artifactId>
 			<version>${selenium.version}</version>
-		</dependency>
+		</dependency> -->
 		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-java -->
 		<dependency>
 			<groupId>io.cucumber</groupId>
@@ -104,6 +105,12 @@
 			<artifactId>slf4j-simple</artifactId>
 			<version>2.0.11</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.24</version>
+			<scope>compile</scope>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/net.sourceforge.jexcelapi/jxl -->
 		<dependency>
@@ -218,12 +225,12 @@
 			<version>7.15.0</version>
 		</dependency>-->
 		<!-- https://mvnrepository.com/artifact/io.cucumber/cucumber-junit -->
-		<!--<dependency>
+		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-junit</artifactId>
 			<version>7.15.0</version>
 			<scope>test</scope>
-		</dependency>-->
+		</dependency>
 		<!--
 		https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting -->
 		<dependency>

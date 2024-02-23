@@ -1,6 +1,7 @@
 package stepDefinition;
 
 import java.io.File;
+import java.nio.file.Path;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -11,24 +12,24 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 
 public class Screenshot {
-	
-	public static void screenshot(WebDriver driver, long ms)
-	{
 
-	try {
-	    TakesScreenshot ts = (TakesScreenshot) driver;
-	    File source = ts.getScreenshotAs(OutputType.FILE);
-	    FileUtils.copyFile(source, new File("./ScreenShots/"+ms+"TestEnsure.png"));
-	    System.out.println("ScreenShot Taken");
-	} 
-	catch (Exception e) 
-	{
-	    System.out.println("Exception while taking ScreenShot "+e.getMessage());
+	public static String screenshot(WebDriver driver, long ms) {
+		String screenshot = null;
+
+		try {
+			TakesScreenshot ts = (TakesScreenshot) driver;
+			File source = ts.getScreenshotAs(OutputType.FILE);
+			String userDir = System.getProperty("user.dir");
+			screenshot= Path.of(userDir).resolve("ScreenShots").resolve(ms + "TestEnsure.png").toString();
+			FileUtils.copyFile(source, new File(screenshot));
+			System.out.println("ScreenShot Taken");
+		} catch (Exception e) {
+			System.out.println("Exception while taking ScreenShot " + e.getMessage());
+		}
+		return screenshot;
+
 	}
 
-
-	}
-	
 //	@Before
 //	public void beforeScenario(){
 //		
@@ -54,5 +55,4 @@ public class Screenshot {
 ////			}
 //			
 //		}
-	}
-
+}

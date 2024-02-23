@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Example Suite" parallel="tests" configfailurepolicy="continue" verbose="1"
-   thread-count="1">
-	
-	
+<suite name="Example Suite" parallel="tests"
+	configfailurepolicy="continue" verbose="1" thread-count="1">
+
+
 	<test name="Login" annotations="JDK">
-        
+
 		<classes>
-			<class name="runner.LoginRunner">
-			</class>
+			<class name="runner.TestBDD" />
+			 <class name="runner.LoginRunner" />
 		</classes>
-	</test> 
-	</suite>
+		
+	</test>
+</suite>
