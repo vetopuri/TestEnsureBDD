@@ -3,6 +3,7 @@ package stepDefinition;
 import java.awt.Desktop.Action;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -43,6 +44,8 @@ public class LoginStepDef {
 	PhysicalProgressPage pp;
 	Action act;
 	Screenshot ss;
+	
+	public static String status = "UNTESTED";
 
 	public static String jobId = System.getProperty("job.id");
 	public static String moduleId = null;
@@ -130,6 +133,11 @@ public class LoginStepDef {
 		} else {
 			System.out.println("Test case passed");
 		}
+		String userDir = System.getProperty("user.dir");
+		String featureFile = Path.of(userDir).resolve(System.getProperty("cucumber.features")).toString();
+		System.out.println("featureFile" + featureFile);
+		 File file= new File(featureFile);
+		 file.delete();
 
 	}
 
@@ -177,6 +185,7 @@ public class LoginStepDef {
 			System.out.println("Test case passed");
 		}
 
+
 	}
 
 	@Given("Start Execution {string}")
@@ -198,7 +207,7 @@ public class LoginStepDef {
 				"https://mingle-portal.se2.inforcloudsuite.com/UH9WFNGMM5Z5HPYE_DEM/36b871bb-ff48-4f95-9d2f-ae149239b851");
 		driver.manage().window().maximize();
 		JobUpdateRequest jobUpdateRequest = getJobUpdaterequest("User on login Page");
-		StatusUpdater.updateStatus(jobId, testStepId, "PASSED", moduleId, testNodeId, testCaseId, jobUpdateRequest);
+		StatusUpdater.updateStatus(jobId, testStepId, status, moduleId, testNodeId, testCaseId, jobUpdateRequest);
 	}
 
 	@When("User Enters Username {string} {string} {string}")
@@ -206,14 +215,14 @@ public class LoginStepDef {
 			throws InterruptedException {
 		lp.EnterUsername("srilakshmi.supraja@sailotech.com");
 		JobUpdateRequest jobUpdateRequest = getJobUpdaterequest("Enter Username");
-		StatusUpdater.updateStatus(jobId, testStepId, "PASSED", moduleId, testNodeId, testCaseId, jobUpdateRequest);
+		StatusUpdater.updateStatus(jobId, testStepId, status, moduleId, testNodeId, testCaseId, jobUpdateRequest);
 	}
 
 	@When("User Enters Password {string} {string} {string}")
 	public void user_enters_password(String testNodeId, String testCaseId, String testStepId) {
 		lp.EnterPassword("InforCloud@1");
 		JobUpdateRequest jobUpdateRequest = getJobUpdaterequest("Enter Password");
-		StatusUpdater.updateStatus(jobId, testStepId, "PASSED", moduleId, testNodeId,testCaseId, jobUpdateRequest);
+		StatusUpdater.updateStatus(jobId, testStepId, status, moduleId, testNodeId,testCaseId, jobUpdateRequest);
 	}
 
 	@When("User clicks on LoginButton {string} {string} {string}")
@@ -221,7 +230,7 @@ public class LoginStepDef {
 			throws InterruptedException {
 		lp.getLogin().click();
 		JobUpdateRequest jobUpdateRequest = getJobUpdaterequest("Click on Login Button");
-		StatusUpdater.updateStatus(jobId, testStepId, "PASSED", moduleId, testNodeId,testCaseId, jobUpdateRequest);
+		StatusUpdater.updateStatus(jobId, testStepId, status, moduleId, testNodeId,testCaseId, jobUpdateRequest);
 		WebElement Iframe = driver.findElement(By.xpath("(//*[@class='m-app-frame'])[1]"));
 		driver.switchTo().frame(Iframe);
 		Thread.sleep(5000);
@@ -232,7 +241,8 @@ public class LoginStepDef {
 			throws InterruptedException {
 		System.out.println("Login Successful");
 		JobUpdateRequest jobUpdateRequest = getJobUpdaterequest("Login Successful");
-		StatusUpdater.updateStatus(jobId, testStepId, "PASSED", moduleId, testNodeId,testCaseId, jobUpdateRequest);
+		StatusUpdater.updateStatus(jobId, testStepId, status, moduleId, testNodeId,testCaseId, jobUpdateRequest);
+	
 		
 
 	}

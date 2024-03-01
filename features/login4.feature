@@ -1,8 +1,8 @@
 Feature: Login Functionality
 
   @moduleStart
-  Scenario: It should process a sentence
-    Given Start Execution 
+  Scenario Outline: It should process a sentence
+    Given Start Execution <job_id>
     
   Scenario: LOGIN_001
     Given User navigates to the website

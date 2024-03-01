@@ -39,10 +39,10 @@ import cucumber.api.testng.TestNGCucumberRunner;
 							"html:target/cucumber-reports/cucumber-pretty.html",
 					        "json:target/cucumber-reports/CucumberTestReport.json",
 					        "rerun:target/cucumber-reports/rerun.txt",
-					        "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
+					       
 } ) 
 	public class LoginRunner  extends AbstractTestNGCucumberTests{ 
-	
+//		 "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"	
 //		private static  String FEATURE_FILE_NAME = "login.feature"; 
 //		
 //		public static void main(String[] args) { 

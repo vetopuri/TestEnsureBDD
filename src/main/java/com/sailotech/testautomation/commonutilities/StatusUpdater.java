@@ -44,12 +44,6 @@ public class StatusUpdater {
 		try {
 //			if (jobID != null) {
 
-			System.out.println("runID " + runID);
-			System.out.println("testCaseStepID " + testCaseStepID);
-			System.out.println("status " + status);
-			System.out.println("moduleId " + moduleId);
-			System.out.println("testCaseId " + testCaseId);
-			System.out.println("testNodeId " + testNodeId);
 			
 			LocalDateTime moduleStartTime = LocalDateTime.now();
 			LocalDateTime moduleEndTime = LocalDateTime.now();
@@ -93,7 +87,7 @@ public class StatusUpdater {
 
 			HttpEntity<Map<String, Object>> requestEntity = new HttpEntity<>(requestBody);
 
-			System.out.println("requestEntity " + requestEntity);
+//			System.out.println("requestEntity " + requestEntity);
 			ResponseEntity<String> response = restTemplate.exchange(
 					String.format("/api/releases/jobUpdate/%s/%s/%s?bypass=true", runID, testCaseStepID, status),
 					HttpMethod.PATCH, requestEntity, String.class, Map.of());
