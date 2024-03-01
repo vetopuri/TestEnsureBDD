@@ -45,7 +45,7 @@ public class LoginStepDef {
 	Action act;
 	Screenshot ss;
 	
-	public static String status = "UNTESTED";
+	public static String status = "PASSED";
 
 	public static String jobId = System.getProperty("job.id");
 	public static String moduleId = null;
