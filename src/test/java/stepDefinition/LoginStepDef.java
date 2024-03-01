@@ -143,7 +143,7 @@ public class LoginStepDef {
 		String featureFile = Path.of(userDir).resolve(System.getProperty("cucumber.features")).toString();
 		System.out.println("featureFile" + featureFile);
 		 File file= new File(featureFile);
-		 file.delete();
+		 //file.delete();
 	}
 
 	@BeforeStep
