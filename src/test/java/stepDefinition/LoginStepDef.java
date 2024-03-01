@@ -133,17 +133,17 @@ public class LoginStepDef {
 		} else {
 			System.out.println("Test case passed");
 		}
-		String userDir = System.getProperty("user.dir");
-		String featureFile = Path.of(userDir).resolve(System.getProperty("cucumber.features")).toString();
-		System.out.println("featureFile" + featureFile);
-		 File file= new File(featureFile);
-		 file.delete();
+		
 
 	}
 
 	@Before
 	public void beforeScenario(Scenario sc) throws IOException {
-
+		String userDir = System.getProperty("user.dir");
+		String featureFile = Path.of(userDir).resolve(System.getProperty("cucumber.features")).toString();
+		System.out.println("featureFile" + featureFile);
+		 File file= new File(featureFile);
+		 file.delete();
 	}
 
 	@BeforeStep
